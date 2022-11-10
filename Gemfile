@@ -6,6 +6,14 @@ ruby "3.1.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
+gem "devise"
+
+gem 'coffee-script-source', '~> 1.11', '>= 1.11.1'
+
+gem 'jsbundling-rails'  # needed for bootstrap javascript
+
+gem 'cssbundling-rails' # Install bootstrap 5
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

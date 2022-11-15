@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[ index show ]
+  before_action :authenticate_user!, only: %i[ edit update destroy ]
 
   # GET /posts or /posts.json
   def index
     @posts = Post.all
   end
+
 
   # GET /posts/1 or /posts/1.json
   def show
@@ -49,6 +52,8 @@ class PostsController < ApplicationController
     end
   end
 
+ 
+
   # DELETE /posts/1 or /posts/1.json
   def destroy
     @post.destroy
@@ -68,5 +73,11 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :body)
+    end
+
+    def authorize_user!
+      unless @post.user == current_user
+      redirect_to root_path, notice: "You dont have permissions to do that."
+      end
     end
 end

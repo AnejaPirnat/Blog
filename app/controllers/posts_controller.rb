@@ -26,6 +26,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    @post.published_at = TimeDate.now if @post.published_at.blank?
     @post.user = current_user
 
 
